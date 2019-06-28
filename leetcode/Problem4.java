@@ -1,3 +1,5 @@
+package leetcode;
+
 public class Problem4 {
     public static void main(String[] args) {
         int[] nums1 = {1, 2};
