@@ -1,16 +1,15 @@
-def rotation(a, d):
-    for i in range(gcd(d, len(a))):
-        curr = i
-        temp = a[curr]
+def rotationUsingGCD(a, d):
+    ''' Most optimal: time O(n) and space O(1) '''
+    n = len(a)
+    for i in range(gcd(d, n)):
+        current = i
+        temp = a[current]
         while True:
-            k = curr + d
-            if k >= len(a):
-                k -= len(a)
-            if k == i:
-                break
-            a[curr] = a[k]
-            curr = k
-        a[curr] = temp
+            nextElem = current + d - n if current + d >= n else current + d
+            if nextElem == i: break
+            a[current] = a[nextElem]
+            current = nextElem
+        a[current] = temp
     return a
 
 def gcd(a, b):
@@ -18,6 +17,10 @@ def gcd(a, b):
         return a
     else:
         return gcd(b, a % b)
+
+def rotation(a, d):
+    ''' Optimal with extra space: time O(n) and space O(d) '''
+    return a[d:len(a)] + a[:d]
 
 inp = [
     ("1 2 3 4 5 6 7 8 9 10 11 12", 3, "4 5 6 7 8 9 10 11 12 1 2 3"),
